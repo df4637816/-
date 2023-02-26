@@ -12,16 +12,22 @@ TopBtn.addEventListener('click',function(){
     })
 
 
-
+  
 
     //google map set
-    let currentPosition;
+    
+    let currPOsition = navigator.geolocation.getCurrentPosition(function(position) {
+                         let currentPosition;
+                         currentPosition ={ lat : position.coords.latitude,
+                                              lng : position.coords.longitude
+                        }
+                        return currentPosition
+       // 將 lat 與 lng 帶入後續的 Google Maps API 中
+                          });
     function initMap(){
-        
-        let location = {
-            lat: 25.0374865, // 經度
-            lng: 121.5647688 // 緯度
-          };
+      
+         
+        let location = currPOsition
           let map = new google.maps.Map(document.getElementById("map"), {
             zoom: 7,
             center: location,
@@ -39,7 +45,7 @@ TopBtn.addEventListener('click',function(){
             };
             map.setCenter(currentPosition);
             map.setZoom(16);
-               marker.getCurrentPosition(c) 
+               marker.getCurrentPosition(); 
           })
 
           //按下標記時地圖會縮放
@@ -47,7 +53,7 @@ TopBtn.addEventListener('click',function(){
             // 3 seconds after the center of the map has changed, pan back to the
             // marker.
             window.setTimeout(() => {
-              map.panTo(marker.getPosition());
+              map.panTo(marker.getCurrentPosition());
             }, 3000);
           });
           marker.addListener("click", () => {
