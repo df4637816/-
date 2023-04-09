@@ -1,0 +1,30 @@
+*.a             
+!lib.a          
+/TODO          
+build/          
+doc/*.txt       
+ 
+bin/:           
+/*.c:           
+debug/*.obj:    
+**/foo:         
+a/**/b:         
+!/bin/run.sh    
+*.log:          
+config.php:     
+ 
+/mtk/           
+*.zip           
+/mtk/do.c      
+
+# 忽略所有的 .log 檔案
+*.log
+
+# 忽略 node_modules 目錄
+node_modules/
+
+# 忽略 .DS_Store 檔案（macOS 中生成的檔案）
+.DS_Store
+
+# 忽略 .vscode 目錄（Visual Studio Code IDE 中生成的目錄）
+.vscode/
