@@ -79,7 +79,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: 'singapore index',
-      template: '/src/index.html',
+      template: '/index.html',
       filename: 'index.html',
       minify: {
         collapseWhitespace: true,
