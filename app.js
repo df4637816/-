@@ -689,21 +689,10 @@ TopBtn.addEventListener('click',function(){
    
     
     
-      
-      // dataLayer.setMap(map);
-      // dataLayer.loadGeoJson('/src/map.geojson', {
-      //   idPropertyName: 'name'
-      // });
-      
-      // dataLayer.setStyle(function(feature) {
-      //   var color = feature.getProperty('color');
-      //   return {
-      //     fillColor: color,
-      //     strokeWeight: 1
-      //   };
-      // });
-     
+      // 在google map上顯示資訊視窗
     let infoWindow = new google.maps.InfoWindow();
+    
+    
     if(navigator.geolocation){
         
        
@@ -714,28 +703,41 @@ TopBtn.addEventListener('click',function(){
               lat: position.coords.latitude,
               lng: position.coords.longitude,
             };
-            map.data.addListener('click',function(e){
-                 let name = e.feature.getProperty('name')
-                 let infowindow = new google.maps.InfoWindow({
-                    content: name
-                  })
-                    infowindow.setPosition(e.latLng);
-                    infowindow.open(map);
+            let InfoDisplay = (e) =>{
+                let time;
+                let name = e.feature.getProperty('name')
+                let infowindow = new google.maps.InfoWindow({
+                content: name
+                })
+                infowindow.setPosition(e.latLng);
+                infowindow.open(map);
+                time = setTimeout(()=>{infowindow.close()},1600)
+                
+           }
+
+            map.data.addListener('click',
+                debouse(InfoDisplay)
+            )
+           
+            function debouse(callback,time=200){
+                  let timer;
+                  clearTimeout(timer)
+                  let that = this
+                  let args = arguments
+                return function(e){
+                timer = setTimeout(()=>{
+                    callback(e)
                     
-            })
+                },time)   
+                }
+            }
             
   
             infoWindow.setPosition(pos);
-            infoWindow.setContent("Location found.");
+            infoWindow.setContent("我的位置");
             infoWindow.open(map,marker);
             map.setCenter(pos);
-            google.maps.event.addListener(infowindow, 'domready', function() {
-                var iwOuter = document.querySelector('.gm-style-iw');
-                var iwBackground = iwOuter.previousElementSibling;
-                iwBackground.style.opacity = '0.8'; // 設置背景透明度
-                var iwCloseBtn = iwOuter.nextElementSibling;
-                iwCloseBtn.style.opacity = '1'; // 設置關閉按鈕不透明度
-              });   
+            
           },
           () => {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -758,8 +760,47 @@ TopBtn.addEventListener('click',function(){
           : "Error: Your browser doesn't support geolocation."
       );
       infoWindow.open(map);
-    }      
+    } 
     
+    //返回現在位置的button
+    const locationButton = document.createElement("button");
+
+    locationButton.textContent = "Pan to Current ";
+    locationButton.classList.add("custom-map-control-button");
+    map.controls[google.maps.ControlPosition.LEFT_CENTER].push(locationButton);
+    locationButton.addEventListener("click", () => {
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              };
+              let marker = new google.maps.Marker(
+                {
+                    position:pos,
+                    map:map,
+                    title:'我的位置'
+
+                }
+              )
+             
+              infoWindow.setPosition(pos);
+              infoWindow.setContent("我的位置");
+              infoWindow.open(map);
+              map.setCenter(pos);
+              marker.setMap(map);
+            },
+            () => {
+              handleLocationError(true, infoWindow, map.getCenter());
+            }
+          );
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      });
   
 }
    
