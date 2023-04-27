@@ -2,9 +2,9 @@
 
 const TopBtn = document.querySelector('.btn');
 const Nav = document.querySelector('nav');
-const Imgitems = document.querySelectorAll('img')
-
-
+const Imgitems = document.querySelectorAll('img');
+const toggleMode = document.querySelector('.toggle-mode__button');
+const bodyBackground = document.querySelector('body')
 document.onload = (function(){
  
   Imgitems.forEach((i)=>{
@@ -19,6 +19,17 @@ TopBtn.addEventListener('click',function(){
        
     })
 
+//toggle-mode
+toggleMode.addEventListener('click',function(){
+    
+     toggleMode.classList.toggle('act')
+    if(toggleMode.classList.contains('act')){
+        bodyBackground.dataset.bsTheme = 'dark' 
+    }else{
+        bodyBackground.dataset.bsTheme = 'light'
+    }
+
+})
 
   
 
