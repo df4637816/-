@@ -5,6 +5,7 @@ const Nav = document.querySelector('nav');
 const Imgitems = document.querySelectorAll('img');
 const toggleMode = document.querySelector('.toggle-mode__button');
 const bodyBackground = document.querySelector('body')
+const toggleIcon = document.querySelector('#light-dark')
 document.onload = (function(){
  
   Imgitems.forEach((i)=>{
@@ -23,10 +24,15 @@ TopBtn.addEventListener('click',function(){
 toggleMode.addEventListener('click',function(){
     
      toggleMode.classList.toggle('act')
+     toggleIcon.classList.remove('ri-sun-fill')
+     toggleIcon.classList.add('ri-moon-line')
     if(toggleMode.classList.contains('act')){
         bodyBackground.dataset.bsTheme = 'dark' 
+        
     }else{
         bodyBackground.dataset.bsTheme = 'light'
+        toggleIcon.classList.remove('ri-moon-line')
+        toggleIcon.classList.add('ri-sun-fill')
     }
 
 })
