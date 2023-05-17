@@ -5,20 +5,86 @@ const Nav = document.querySelector('nav');
 const Imgitems = document.querySelectorAll('img');
 const toggleMode = document.querySelector('.toggle-mode__button');
 const bodyBackground = document.querySelector('body')
-const toggleIcon = document.querySelector('#light-dark')
+const toggleIcon = document.querySelector('#light-dark');
+//search food item
+const foodItems  = document.querySelectorAll('.dropdown-item');
+const InputForm = document.querySelector('.form-control');
+const formitem = document.querySelector('.form-item');
+const navbarAutocomplete = document.querySelector('#navbar-search-autocomplete');
+const fooItemName = [...foodItems].map((item)=>{
+     return [item.textContent,item.getAttribute('href')]
+})
+const navbarDataFilter = (value) => {
+    return fooItemName.filter((item) => {
+      return item[0].match(value)
+    });
+  };
+  
+InputForm.addEventListener('input',debouse(()=>{
+    let val
+    let Inputval = InputForm.value
+    if(Inputval)
+    {
+      val = navbarDataFilter(InputForm.value)
+      console.log(val)
+      val.forEach((i)=>{
+         addList(i[0],i[1])
+      })
+      formitem.style.display = 'flex'
+    }else{
+      Inputval = InputForm.value
+      formitem.style.display = 'none'
+    }
+
+}))
+function addList(val,link){
+    let searchList = document.createElement('li');
+    let searchlink = document.createElement('a')
+    let searchUl = navbarAutocomplete.children[1].children[0];
+    searchUl.appendChild(searchList).appendChild(searchlink)
+    searchlink.textContent = val
+   searchlink.setAttribute('href',link)
+}
+function debouse(callback,t=800){
+    let time;
+    return (...args)=>{
+        clearTimeout(time)
+      time = setTimeout((...args)=>{
+          callback(...args) 
+      },t)
+
+    }
+
+}
+
+/---------------------------------------------------------/
+
+
+//圖片設定lazy loadin 屬性
+
 document.onload = (function(){
  
   Imgitems.forEach((i)=>{
      i.setAttribute('loading','lazy')
   })
-})()
+})();
+
+
+/---------------------------------------------------------/
+
+
+// 回到最上面 button 
 TopBtn.addEventListener('click',function(){
          
           let scY = window.scrollY;
           scY = Nav.scrollTop
           window.scrollTo(0,scY);
        
-    })
+    });
+
+
+    /---------------------------------------------------------/
+
 
 //toggle-mode
 toggleMode.addEventListener('click',function(){

@@ -8,29 +8,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
-    
+    <script src="https://kit.fontawesome.com/74e6a27e77.js" crossorigin="anonymous"></script>
 </head>
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-smooth-scroll="true"  class="position-relative " data-bs-theme="light"  >
     <button type="button" class="btn btn-dark position-fixed bottom-0 end-0 z-1 opacity-75 p-3 rounded-circle"><a href="#top">TOP</a></button>
     <nav id="top" class="navbar navbar-expand-lg bg-body-tertiary ">
   <div class="container-fluid">
+    
     <div class="light-dark__toggle">
     <i id="light-dark" class="ri-sun-fill"></i>
     <div class="toggle-mode">
       <button class="toggle-mode__button"></button>
     </div>
     </div>
-    <a class="navbar-brand fs-2 fw-bold " href="#"><img src="/img/大哥.jpg" style="width:50px;height:50px ;" alt="..."> 回頭新加坡Travel</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<a class="navbar-brand fs-2 fw-bold " href="#"><img src="/img/大哥.jpg" style="width:50px;height:50px ;" alt="..."> 回頭新加坡Travel</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" target="_blank" href="https://www.funliday.com/m_NjQwYzYwMTI5MzMyNDAwMDRlMjJiNTM40/trips/640c60bc933240004e22b5ba">行程時間</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#subway">地鐵資訊</a>
+        <li class="nav-item ">
+          <a class="nav-link  " href="#subway">地鐵資訊</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#hotel">飯店地址</a>
@@ -180,6 +181,19 @@
            
         </li>
       </ul>
+      <div class="input-group  px-0">
+        <div id="navbar-search-autocomplete" class="form-outline">
+          <input type="search" id="form1" class="form-control" placeholder="Search" />
+          <div class="form-item">
+            <ul>
+               
+            </ul>
+          </div>
+          </div>
+        <button type="button" class="btn btn-primary">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
     </div>
   </div>
 </nav>
@@ -949,11 +963,11 @@
                                 </div>
     </div>
   </div>
-  <footer id="hotel" class=" text-center text-lg-start">
+  <footer id="hotel" class=" text-center text-lg-start mt-1">
     <div class=" container-fluid p-4">
       <div class="row">
         <div class="col-lg-6 col-md-12  mb-4 mb-md-0 ">
-          <h5 class="text-uppercase">1888精選酒店 (Hotel 1888 Collections)</h5>
+          <h5 class="text-uppercase"><a class="text-decoration-none" target="_blank" href="http://hotel1888.com.sg/">1888精選酒店 (Hotel 1888 Collections)</a></h5>
           <p>地址: 新加坡,20 Trengganu Street, 3rd Storey
             <br/>
             Hotel 1888 Collection住宿距離唐人街地鐵站有5 分鐘步行約。其現代化的客房提供免費 WiFi,大型投影儀屏幕和保險箱。

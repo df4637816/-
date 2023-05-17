@@ -103,5 +103,55 @@
             display: block;
           }
     }
+    @media screen and (max-width :1600px)
+    {
+      .input-group{
+         margin-right: 20rem;
+      }
+    }
   
+    .form-item{
+      width:12.5em;
+      height: 10rem;
+      position: absolute;
+      background-color: rgb(246, 249, 252);
+      border: 1px solid rgb(187, 181, 181);
+      border-radius: 5px ;
+      z-index: 1;
+      overflow-y:scroll;
+      scroll-behavior: smooth;
+      top: 100%;
+      display: none;
+    }
+   .form-item > ul {
+    margin-bottom: 0;
+    width: 100%;
+    padding: 0;
     
+   }
+    .form-item > ul > li{
+        list-style: none;
+        width: 100%;
+        padding: .5rem 0;
+        text-align: center;
+    }
+    .form-item > ul > li:hover{
+       background-color:hsla(179, 46%, 65%, 0.5) ;
+       cursor: pointer;
+    }
+    .form-item > ul > li>a{
+        text-decoration: none;
+        color: black;
+        text-align: center;
+    }
+
+    .input-group{
+      max-width: 20rem;
+      margin-left:5rem ;
+     
+    }
+
+    .form-control{
+       border-radius: 5px 0 0 5px;
+       
+    }
