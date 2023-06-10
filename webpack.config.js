@@ -5,8 +5,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  mode:process.env.NODE_ENV,
   entry: {
-    app: './src/index.js'
+    bundle: './src/index.js'
   },
   output: {
     filename: 'bundle.js',
