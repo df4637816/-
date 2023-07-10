@@ -4,26 +4,53 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // 載入 html-webpack-plugin (第一步)
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+
+
 module.exports = {
   mode:process.env.NODE_ENV,
   entry: {
-    bundle: './src/index.js'
+     bundle: './src/index.js',
+   
   },
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'js/[name].js',
+    
+    
     },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
+      compress: true,
+      port: 9000,
+      
+      },
+
+    
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: [
-            
-          'css-loader',
-          'style-loader',
-          MiniCssExtractPlugin.loader
+        use: [MiniCssExtractPlugin.loader,
               
-        ]
+              'css-loader',
+              {
+                loader: "postcss-loader",
+                options: {
+                  postcssOptions: {
+                    plugins: [
+                      [
+                        "postcss-preset-env",
+                        {
+                          // Options
+                        },
+                      ],
+                    ],
+                  },
+                },
+              },
+      ]
       },
       {
         test: /\.js$/,
@@ -39,18 +66,16 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif|jpe?g|svg|avif|webp)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              publicPath: './img',
-              emitFile: false
-            }  
-          },
+        type:  "asset",
+        generator: {
+          filename: 'img/[name].[hash:8][ext]'
+        },
+        use:[
+        
           {
             loader: 'image-webpack-loader',
             options: {
+              disable: process.env.NODE_ENV === 'production' ? false : true,
               mozjpeg: {
                 progressive: true,
                 quality: 65
@@ -68,21 +93,25 @@ module.exports = {
               webp: {
                 quality: 75
               }
+              
             }
           }
         ]
-      }
+        
+      },
+     
+       
     ]
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].[hash].css',
+      filename: 'css/main.css',
     }),
     new HtmlWebpackPlugin({
       title: 'singapore index',
-      template: '/index.html',
+      template: '/public/index.html',
       filename: 'index.html',
-      minify: {
+      minify:  {
         collapseWhitespace: true,
         removeComments: true,
         removeRedundantAttributes: true,
@@ -91,5 +120,6 @@ module.exports = {
         useShortDoctype: true
       }
     }),
+    
   ],
 };
