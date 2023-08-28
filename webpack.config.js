@@ -68,7 +68,7 @@ module.exports = {
         test: /\.(png|jpg|gif|jpe?g|svg|avif|webp)$/i,
         type:  "asset",
         generator: {
-          filename: 'img/[name].[ext]'
+          filename: 'img/[name][hash].[ext]'
         },
         use:[
         
@@ -99,6 +99,13 @@ module.exports = {
         ]
         
       },
+      {
+        test:/\.html$/,
+        loader:'html-withimg-loader',
+        options: {
+          esModule:false,
+        }
+      }
      
        
     ]
@@ -109,16 +116,8 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       title: 'singapore index',
-      template: '/public/index.html',
-      filename: 'index.html',
-      minify:  {
-        collapseWhitespace: true,
-        removeComments: true,
-        removeRedundantAttributes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        useShortDoctype: true
-      }
+      template: path.resolve(__dirname,'/public/index.html'),
+      minify: process.env.NODE_ENV == 'development' ? false : true,
     }),
     
   ],
