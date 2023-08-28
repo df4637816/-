@@ -8,5 +8,5 @@
   *  Boostrap
   *  Webpack
 ----------------------------
-![網站](/public/img/web.jpeg)
+![網站](/public/img/web.jpeg){:height="50%" width="50%"}
 
