@@ -8,6 +8,6 @@
   *  Boostrap
   *  Webpack
 ----------------------------
- <img src="/public/img/web.jpeg" width = "50%" height = "50%" alt="图片名称" align=center />
+ <img src="/public/img/web.jpeg" width = "60%" height = "60%" alt="图片名称" align-item = "center" />
 
 
